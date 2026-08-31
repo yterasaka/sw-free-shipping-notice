@@ -1,0 +1,27 @@
+{
+    "name": "yuki-t/free-shipping-notice",
+    "description": "yuki-t-free-shipping-notice/yuki-t-free-shipping-notice",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "require": {
+        "shopware/core": "~6.7.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "YukiTFreeShippingNotice\\YukiTFreeShippingNotice",
+        "label": {
+            "de-DE": "Skeleton plugin",
+            "en-GB": "Skeleton plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "YukiTFreeShippingNotice\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "YukiTFreeShippingNotice\\Tests\\": "tests/"
+        }
+    }
+}
