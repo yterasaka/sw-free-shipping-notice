@@ -1,0 +1,15 @@
+{% block yukit_free_shipping_notice %}
+    {% if progress %}
+        <div
+                class="alert alert-info d-flex align-items-center mb-3"
+                role="status"
+                aria-live="polite"
+        >
+            <span>
+                {{ 'yukiTFreeShippingNotice.remainingUntilFreeDelivery'|trans({
+                    '%freeShipping%': progress.remaining|currency
+                })|sw_sanitize }}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}

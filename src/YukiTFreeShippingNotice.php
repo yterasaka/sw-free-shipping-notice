@@ -2,19 +2,16 @@
 
 namespace YukiTFreeShippingNotice;
 
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\PrefixFilter;
 use Shopware\Core\Framework\Plugin;
-use Shopware\Core\Framework\Plugin\Context\ActivateContext;
-use Shopware\Core\Framework\Plugin\Context\DeactivateContext;
-use Shopware\Core\Framework\Plugin\Context\InstallContext;
 use Shopware\Core\Framework\Plugin\Context\UninstallContext;
-use Shopware\Core\Framework\Plugin\Context\UpdateContext;
+use Shopware\Core\System\Snippet\SnippetCollection;
 
 class YukiTFreeShippingNotice extends Plugin
 {
-    public function install(InstallContext $installContext): void
-    {
-        // Do stuff such as creating a new payment method
-    }
+    private const SNIPPET_PREFIX = 'yukiTFreeShippingNotice.';
 
     public function uninstall(UninstallContext $uninstallContext): void
     {
@@ -24,31 +21,36 @@ class YukiTFreeShippingNotice extends Plugin
             return;
         }
 
-        // Remove or deactivate the data created by the plugin
+        $this->removeSnippetOverrides($uninstallContext);
     }
 
-    public function activate(ActivateContext $activateContext): void
-    {
-        // Activate entities, such as a new payment method
-        // Or create new entities here, because now your plugin is installed and active for sure
-    }
+    private function removeSnippetOverrides(
+        UninstallContext $uninstallContext,
+    ): void {
+        /** @var EntityRepository<SnippetCollection> $snippetRepository */
+        $snippetRepository = $this->container->get('snippet.repository');
 
-    public function deactivate(DeactivateContext $deactivateContext): void
-    {
-        // Deactivate entities, such as a new payment method
-        // Or remove previously created entities
-    }
+        $criteria = (new Criteria())->addFilter(
+            new PrefixFilter(
+                'translationKey',
+                self::SNIPPET_PREFIX,
+            ),
+        );
 
-    public function update(UpdateContext $updateContext): void
-    {
-        // Update necessary stuff, mostly non-database related
-    }
+        $ids = $snippetRepository
+            ->searchIds($criteria, $uninstallContext->getContext())
+            ->getIds();
 
-    public function postInstall(InstallContext $installContext): void
-    {
-    }
+        if ($ids === []) {
+            return;
+        }
 
-    public function postUpdate(UpdateContext $updateContext): void
-    {
+        $snippetRepository->delete(
+            array_map(
+                static fn (string $id): array => ['id' => $id],
+                $ids,
+            ),
+            $uninstallContext->getContext(),
+        );
     }
 }
