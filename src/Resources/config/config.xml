@@ -4,12 +4,126 @@
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
 
     <card>
-        <title>Minimal configuration</title>
+        <title>Free shipping notification</title>
+        <title lang="de-DE">Benachrichtigung über kostenlosen Versand</title>
+
+        <input-field type="float">
+            <name>freeShippingThreshold</name>
+
+            <label>Free shipping threshold in the system default currency</label>
+            <label lang="de-DE">
+                Schwellenwert für kostenlosen Versand in der Systemstandardwährung
+            </label>
+
+            <helpText>
+                Enter a value greater than 0 to enable the notification. This setting only controls the notification and does not change the actual shipping costs. Configure the same threshold in the shipping method settings. The value is converted to the customer's current currency.
+            </helpText>
+
+            <helpText lang="de-DE">
+                Geben Sie einen Wert größer als 0 ein, um die Benachrichtigung zu aktivieren. Diese Einstellung steuert nur die Benachrichtigung und ändert nicht die tatsächlichen Versandkosten. Konfigurieren Sie denselben Schwellenwert in den Versandarteinstellungen. Der Wert wird in die aktuelle Kundenwährung umgerechnet.
+            </helpText>
+
+            <defaultValue>0</defaultValue>
+            <min>0</min>
+            <required>true</required>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Display locations</title>
+        <title lang="de-DE">Anzeigebereiche</title>
+
+        <input-field type="bool">
+            <name>showInOffcanvas</name>
+            <label>Show in the offcanvas cart</label>
+            <label lang="de-DE">Im Offcanvas-Warenkorb anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showInCart</name>
+            <label>Show on the cart page</label>
+            <label lang="de-DE">Auf der Warenkorbseite anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showInCheckout</name>
+            <label>Show on the checkout confirmation page</label>
+            <label lang="de-DE">Auf der Bestellbestätigungsseite anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Exclusions</title>
+        <title lang="de-DE">Ausschlüsse</title>
+
+        <component name="sw-entity-multi-id-select">
+            <name>excludedShippingMethodIds</name>
+            <entity>shipping_method</entity>
+
+            <label>Excluded shipping methods</label>
+            <label lang="de-DE">Ausgeschlossene Versandarten</label>
+
+            <helpText>
+                The notification is hidden when one of these shipping methods is selected. Leave empty to support all shipping methods.
+            </helpText>
+            <helpText lang="de-DE">
+                Die Benachrichtigung wird bei diesen Versandarten ausgeblendet. Leer lassen, um alle Versandarten zu unterstützen.
+            </helpText>
+        </component>
+
+        <component name="sw-entity-multi-id-select">
+            <name>excludedCustomerGroupIds</name>
+            <entity>customer_group</entity>
+
+            <label>Excluded customer groups</label>
+            <label lang="de-DE">Ausgeschlossene Kundengruppen</label>
+
+            <helpText>
+                The notification is hidden for these customer groups. Leave empty to support all customer groups.
+            </helpText>
+            <helpText lang="de-DE">
+                Die Benachrichtigung wird für diese Kundengruppen ausgeblendet. Leer lassen, um alle Kundengruppen zu unterstützen.
+            </helpText>
+        </component>
+
+        <component name="sw-entity-multi-id-select">
+            <name>excludedCurrencyIds</name>
+            <entity>currency</entity>
+
+            <label>Excluded currencies</label>
+            <label lang="de-DE">Ausgeschlossene Währungen</label>
+
+            <helpText>
+                The notification is hidden when the customer selects one of these currencies. Leave empty to support all currencies.
+            </helpText>
+            <helpText lang="de-DE">
+                Die Benachrichtigung wird ausgeblendet, wenn Kunden eine dieser Währungen auswählen. Leer lassen, um alle Währungen zu unterstützen.
+            </helpText>
+        </component>
+    </card>
+
+    <card>
+        <title>Storefront text</title>
+        <title lang="de-DE">Storefront-Text</title>
 
         <input-field type="text">
-            <name>textField</name>
-            <label>Test field with default value</label>
-            <defaultValue>test</defaultValue>
+            <name>snippetName</name>
+
+            <label>Snippet name</label>
+            <label lang="de-DE">Textbaustein-Name</label>
+
+            <defaultValue>yukiTFreeShippingNotice.remainingUntilFreeDelivery</defaultValue>
+            <disabled>true</disabled>
+
+            <helpText>
+                Edit this text under Settings > Snippets. Use the %freeShipping% placeholder for the formatted remaining amount.
+            </helpText>
+            <helpText lang="de-DE">
+                Bearbeiten Sie diesen Text unter Einstellungen > Textbausteine. Verwenden Sie den Platzhalter %freeShipping% für den formatierten Restbetrag.
+            </helpText>
         </input-field>
     </card>
 

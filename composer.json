@@ -1,27 +1,40 @@
 {
     "name": "yuki-t/free-shipping-notice",
-    "description": "yuki-t-free-shipping-notice/yuki-t-free-shipping-notice",
+    "description": "Displays the remaining amount until free delivery",
     "type": "shopware-platform-plugin",
     "version": "1.0.0",
-    "license": "proprietary",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Yuki Terasaka"
+      }
+    ],
     "require": {
-        "shopware/core": "~6.7.0"
-    },
-    "extra": {
-        "shopware-plugin-class": "YukiTFreeShippingNotice\\YukiTFreeShippingNotice",
-        "label": {
-            "de-DE": "Free Shipping Notice",
-            "en-GB": "Hinweis zum kostenlosen Versand"
-        }
+        "shopware/core": "~6.7.0",
+        "shopware/storefront": "~6.7.0"
     },
     "autoload": {
         "psr-4": {
             "YukiTFreeShippingNotice\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "YukiTFreeShippingNotice\\Tests\\": "tests/"
+    "extra": {
+        "shopware-plugin-class": "YukiTFreeShippingNotice\\YukiTFreeShippingNotice",
+        "label": {
+            "de-DE": "Hinweis zum kostenlosen Versand",
+            "en-GB": "Free Shipping Notice"
+        },
+        "description": {
+          "de-DE": "Zeigt den verbleibenden Warenkorbwert bis zum kostenlosen Versand im Offcanvas-Warenkorb, Warenkorb und Checkout an, mit Ausschlüssen für Versandarten, Kundengruppen und Währungen.",
+          "en-GB": "Displays the remaining cart value until free delivery in the offcanvas cart, cart and checkout, with exclusions for shipping methods, customer groups and currencies."
+        },
+        "manufacturerLink": {
+          "de-DE": "https://terasaka.dev/",
+          "en-GB": "https://terasaka.dev/"
+        },
+        "supportLink": {
+          "de-DE": "https://store.shopware.com/de/extension-partners/yuki-terasaka",
+          "en-GB": "https://store.shopware.com/en/extension-partners/yuki-terasaka"
         }
     }
 }

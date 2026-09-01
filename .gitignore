@@ -3,3 +3,6 @@
 /src/Resources/app/administration/src/.vite
 /src/Resources/public/
 /vendor
+
+/.phpunit.result.cache
+/.phpunit.cache/

@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-cart.html.twig' %}
+
+{% block component_offcanvas_cart_flashbags %}
+    {{ parent() }}
+
+    {% set progress = page.extensions.freeShippingProgress ?? null %}
+
+    {% sw_include '@YukiTFreeShippingNotice/storefront/component/checkout/free-shipping-notice.html.twig' with {
+        progress: progress
+    } only %}
+{% endblock %}
