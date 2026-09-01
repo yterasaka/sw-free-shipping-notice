@@ -103,4 +103,4 @@ vendor/bin/phpunit -c custom/plugins/YukiTFreeShippingNotice/phpunit.xml
 
 ## License
 
-Proprietary
+MIT
