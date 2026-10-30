@@ -93,7 +93,7 @@ class FreeShippingNoticeSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $page->addExtension('freeShippingProgress', $progress);
+        $page->addExtension('yukiTFreeShippingProgress', $progress);
     }
 
     private function isDisplayEnabled(

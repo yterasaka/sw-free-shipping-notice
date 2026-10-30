@@ -3,7 +3,7 @@
 {% block component_offcanvas_cart_flashbags %}
     {{ parent() }}
 
-    {% set progress = page.extensions.freeShippingProgress ?? null %}
+    {% set progress = page.extensions.yukiTFreeShippingProgress ?? null %}
 
     {% sw_include '@YukiTFreeShippingNotice/storefront/component/checkout/free-shipping-notice.html.twig' with {
         progress: progress

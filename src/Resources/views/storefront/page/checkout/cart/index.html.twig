@@ -1,7 +1,7 @@
 {% sw_extends '@Storefront/storefront/page/checkout/cart/index.html.twig' %}
 
 {% block page_checkout_cart_product_table %}
-    {% set progress = page.extensions.freeShippingProgress ?? null %}
+    {% set progress = page.extensions.yukiTFreeShippingProgress ?? null %}
 
     {% sw_include '@YukiTFreeShippingNotice/storefront/component/checkout/free-shipping-notice.html.twig' with {
         progress: progress
